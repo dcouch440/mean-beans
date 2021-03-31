@@ -17,7 +17,7 @@ class Api::V1::ApiController < ApplicationController
     def setup_basic_api_documentation
       %i[index show create update destroy search].each do |api_action|
         swagger_api api_action do
-          param :header, "X-Api-Key", :string, :required, "At0XlLq4t6LvLrPRxQXhbgtt"
+          param :header, "X-Api-Key", :string, :required, User.first.api_Key
         end
       end
     end

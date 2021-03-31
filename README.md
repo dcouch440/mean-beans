@@ -20,15 +20,20 @@ The objective of this lesson is to create a Rails API using RESTful principles, 
 * Documenting your API endpoints
 * Handling exceptions when an API call fails
 
-## How To Make an API Call
-1. clone project
-2. do all the rake commands
-3. create a user or something
-4. open rails console and see user api key that was generated on creation
-5. open some sort of API call application thing (recommend Postman)
-6. start you server with "Rails S"
-7
-key -> Uga5LEd39Slog8OGBOhrbAtt
+## Mean Beans API Endpoint
+* http://localhost:3000/api/v1, API KEY required
+  * GET /api/v1/coffees
+    * Returns a full list of all coffees in the database
+  * POST /api/v1/coffees
+    * Adds a coffee to the database with supplied blend name, origin, and notes
+  * DELETE /api/v1/coffees/{id}
+    * Removes a coffee from the database
+  * GET /api/v1/coffees/{id}
+    * Fetches a single coffee by id
+  * PATCH /api/v1/coffees/{id}
+    * Updates a single coffee, fetched by id, with supplied blend name, origin, and notes
+  * GET /api/v1/search
+    * Returns all coffees containing a search sub-string in 'blend name'
 
 ## Technologies
 <table style="border: 0 solid transparent;">
@@ -59,109 +64,84 @@ key -> Uga5LEd39Slog8OGBOhrbAtt
  </tr>
 </table>
 
-## How to make API calls
+## How To Make an API Call
+1. clone project
+2. do all the rake commands
+3. create a user or something
+4. open rails console and see user api key that was generated on creation
+5. open some sort of API call application thing (recommend Postman)
+6. start you server with "Rails S"
+7. key -> Uga5LEd39Slog8OGBOhrbAtt
 
-**To see a list of all existing coffees:**  
-1. Make a GET request using the URL: http://localhost:3000/api/v1/coffees
-2. In order to make a successful api call, you must pass your api key into the header of the call. 
-3. Type "X-Api-Key" into the first key input box and then paste your api key in the value input box.
-Example using the <a href="https://www.postman.com/">Postman</a> app:  
-<img src="./public/getrequest.PNG">
+* * *
+## Software Requirements
+* **Ruby is required to run this application**
+* **PostgreSQL is required to run the database**  
 
-You should see a JSON response with all of the coffees with the parameters "blend_name", "origin", and "notes".
+ <a href="https://www.learnhowtoprogram.com/ruby-and-rails/getting-started-with-ruby/installing-ruby">Ruby download instructions</a>  
+  <a href="https://www.learnhowtoprogram.com/ruby-and-rails/getting-started-with-ruby/installing-postgres">PosgreSQL download instructions</a>  
 
-**To see a single coffee value based on its id:**  
-1. Make a GET request using the URL: http://localhost:3000/api/v1/coffees/:id with :id being some integer value (ex: 1,2 or 3)
-2. Make sure to add your API key in the call, covered in the previous steps.
+## Installation Instructions
+1. Navigate to the desired directory where you would like to clone the project to.
 
-You should see a JSON response with a single coffee with the parameters "blend_name", "origin", and "notes".
-
-
-## Response Examples
+2. Once you have chosen your desired directory, clone the github repo using the version control tool `git` (<a href="https://www.learnhowtoprogram.com/introduction-to-programming/getting-started-with-intro-to-programming/git-and-github">download instructions</a>). Typing the following command into your terminal:
+```bash
+$ git clone https://github.com/mekinsie/gathered_analysis
 ```
-GET    /api/v1/coffees    api/v1/coffees#index
-  status: 200
-[
-    {
-        "id": 4,
-        "blend_name": "Huggy Bean",
-        "origin": "Cerrado, Brazil",
-        "notes": "tart, round, lemon verbena, walnut, lychee",
-        "created_at": "2021-03-29T16:49:32.803Z",
-        "updated_at": "2021-03-29T16:49:32.803Z"
-    },
-    {
-        "id": 6,
-        "blend_name": "Kreb-Full-o Coffee",
-        "origin": "Kirinyaga, Kenya",
-        "notes": "quick, syrupy, watermelon, cola, green grape",
-        "created_at": "2021-03-29T16:49:32.810Z",
-        "updated_at": "2021-03-29T16:49:32.810Z"
-    }
-]
+3. Open the project in VSCode by typing the following in your terminal:
 
-POST   /api/v1/coffees     api/v1/coffees#create
+``` bash
+$ code .
+```
+* Note: VSCode is a code editing software. If you don't already have it, you can download it <a href="https://code.visualstudio.com/">here</a>
 
-  params: blend_name, origin, notes
+4. While located in the root directy, install gem bundler by typing:
 
-  your post values: {
-    "blend_name": "Really Good",
-    "origin": "Good Town",
-    "notes": "Honestly Greate"
-  }
-
-  your response:
-
-  status 201
-  {
-    "message": "You have successfully created a coffee",
-    "coffee": {
-        "id": 27,
-        "blend_name": "Really Good",
-        "origin": "Good Town",
-        "notes": "Honestly Great",
-        "created_at": "2021-03-30T23:01:10.519Z",
-        "updated_at": "2021-03-30T23:01:10.519Z"
-    }
-  }
-
-GET    /api/v1/coffees/:id api/v1/coffees#show
-
-  http://localhost:3000/api/v1/coffees/9
-
-  Status 200: OK
-  {
-      "id": 9,
-      "blend_name": "Summer Delight",
-      "origin": "Limu, Ethiopia",
-      "notes": "pointed, coating, sage, cranberry, smokey",
-      "created_at": "2021-03-29T16:49:32.820Z",
-      "updated_at": "2021-03-29T16:49:32.820Z"
-  }
-
-PATCH  /api/v1/coffees/:id api/v1/coffees#update
-PUT    /api/v1/coffees/:id api/v1/coffees#update
-
-DELETE /api/v1/coffees/:id api/v1/coffees#destroy
-  http://localhost:3000/api/v1/coffees/13
-  Status 200: OK
-  {
-    "message": "You have successfully deleted the coffee with id 13"
-  }
-
-GET    /api/v1/search      api/v1/coffees#search
-  http://localhost:3000/api/v1/search?q=hug
-  Status 200: OK
-  {
-      "id": 4,
-      "blend_name": "Huggy Bean",
-      "origin": "Cerrado, Brazil",
-      "notes": "tart, round, lemon verbena, walnut, lychee",
-      "created_at": "2021-03-29T16:49:32.803Z",
-      "updated_at": "2021-03-29T16:49:32.803Z"
-  }
+``` bash
+$ gem install bundler
 ```
 
+5. Install gem bundles by typing:
+
+``` bash
+$ bundle install
+```
+
+6. Create a database for this project by typing the following into your terminal while located in the root directory:
+```
+$ rake db:create
+```
+
+7. Add all tables to the database by typing the following in your terminal:
+```
+$ rake db:migrate
+```
+
+8. Seed the database using Faker by typing the following into your terminal:
+```
+$ rake db:seed
+```
+The databse should now be correctly set up. And you may start a local server to interact with the project. 
+
+9. The swagger documentation comes pre setup with this app but when additional routes are added you can use this command to re instantiate the doc files:
+```
+$ SD_LOG_LEVEL=1 rake swagger:docs
+```
+10. To start a local server, type the following into your terminal:
+```
+$ rails s
+```
+11. Open your default browser and type "localhost:3000" into the search bar and press enter. Here, you will see the live server.
+
+## Running Tests
+* This application was created using test-driven development (TDD).
+* To run the tests yourself, follow the steps below.
+
+Simply type "rspec" into your terminal while located in the root directory of the project.
+``` bash
+$ rspec
+```
+* * *
 
 ## License
 [GPLv3](https://choosealicense.com/licenses/gpl-3.0/)  
