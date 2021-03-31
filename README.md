@@ -23,9 +23,7 @@ The objective of this lesson is to create a Rails API using RESTful principles, 
 ## Mean Beans API Endpoint
 * http://localhost:3000/api/v1
 * **API KEY required** (see user creation instructions below)
-* Example using the <a href="https://www.postman.com/">Postman</a> app:  
-  <img src="./public/getrequest.PNG">
-* Using `Postman`, you can make the following requests below
+* Using <a href="https://www.postman.com/">`Postman`</a>, you can make the following requests below
   * GET /api/v1/coffees
     * Returns a full list of all coffees in the database
   * POST /api/v1/coffees
@@ -38,6 +36,8 @@ The objective of this lesson is to create a Rails API using RESTful principles, 
     * Updates a single coffee, fetched by id, with supplied blend name, origin, and notes
   * GET /api/v1/search
     * Returns all coffees containing a search sub-string in 'blend name'
+  * Example using an API Key with `Postman`:  
+    <img src="./public/getrequest.PNG">  
 
 ## Technologies
 <table style="border: 0 solid transparent;">

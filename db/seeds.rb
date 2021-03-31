@@ -4,7 +4,7 @@ class Seed
     Coffee.destroy_all
     seed = Seed.new
     seed.generate_coffees
-    self.generate_user
+    User.create
   end
 
   def generate_coffees
@@ -12,9 +12,6 @@ class Seed
     puts "Created #{Coffee.count} coffees."
   end
 
-  def generate_user
-    User.create
-  end
 end
 
 Seed.begin
