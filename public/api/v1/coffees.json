@@ -26,6 +26,11 @@
               "message": "Ok"
             },
             {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
               "code": 404,
               "responseModel": null,
               "message": "Not Found"
@@ -47,6 +52,40 @@
               "type": "string",
               "description": "At0XlLq4t6LvLrPRxQXhbgtt",
               "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "blend_name",
+              "type": "string",
+              "description": "Blend Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "origin",
+              "type": "string",
+              "description": "Origin",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "notes",
+              "type": "string",
+              "description": "Blend aroma notes",
+              "required": true
+            }
+          ],
+          "summary": "Creates a new Coffee",
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
             }
           ],
           "nickname": "Api::V1::Coffees#create",
@@ -65,6 +104,32 @@
               "type": "string",
               "description": "At0XlLq4t6LvLrPRxQXhbgtt",
               "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "coffee Id",
+              "required": false
+            }
+          ],
+          "summary": "To show the product",
+          "notes": "shows a specific product",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
             }
           ],
           "nickname": "Api::V1::Coffees#show",
@@ -83,10 +148,94 @@
               "type": "string",
               "description": "At0XlLq4t6LvLrPRxQXhbgtt",
               "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Coffee Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "blend_name",
+              "type": "string",
+              "description": "Blend Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "origin",
+              "type": "string",
+              "description": "Origin",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "notes",
+              "type": "string",
+              "description": "Blend aroma notes",
+              "required": true
+            }
+          ],
+          "summary": "Updates an existing coffee",
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
             }
           ],
           "nickname": "Api::V1::Coffees#update",
           "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/coffees/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-Api-Key",
+              "type": "string",
+              "description": "At0XlLq4t6LvLrPRxQXhbgtt",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Coffee Id",
+              "required": false
+            }
+          ],
+          "summary": "Deletes an existing Coffee item",
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Coffees#destroy",
+          "method": "delete"
         }
       ]
     },
@@ -117,6 +266,11 @@
               "code": 200,
               "responseModel": null,
               "message": "Ok"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
             },
             {
               "code": 404,

@@ -7,11 +7,13 @@ class Api::V1::CoffeesController < Api::V1::ApiController
     json_response(@coffees)
   end
 
+  # swagger
   swagger_api :index do
-    summary "To see a list of all coffees"
+    summary "See a list of all coffees"
     notes "No params to input to see a list of all coffees"
     response :success
     response :not_found
+    response :unauthorized
   end
 
   def search
@@ -25,17 +27,29 @@ class Api::V1::CoffeesController < Api::V1::ApiController
     end
   end
 
+  # swagger
   swagger_api :search do
-    summary "To search for a specific blend by its name"
+    summary "Search for a specific blend by its name"
     notes "params are blend_name"
     param :query, "q", :string, :required, "Blend of coffee"
     response :success
     response :not_found
+    response :unauthorized
   end
 
   def show
     @coffee = Coffee.find(params[:id])
     json_response(@coffee)
+  end
+
+  # swagger
+  swagger_api :show do
+    summary "Show a single coffee"
+    notes "shows a specific product"
+    param :path, :id, :integer, :optional, "coffee Id"
+    response :success
+    response :not_found
+    response :unauthorized
   end
 
   def create
@@ -45,6 +59,16 @@ class Api::V1::CoffeesController < Api::V1::ApiController
         coffee: @coffee
       }
     end
+  end
+
+  # swagger
+  swagger_api :create do
+    summary "Creates a new Coffee"
+    param :form, :blend_name, :string, :required, "Blend Name"
+    param :form, :origin, :string, :required, "Origin"
+    param :form, :notes, :string, :required, "Blend aroma notes"
+    response :unauthorized
+    response :not_acceptable
   end
 
   def update
@@ -59,6 +83,18 @@ class Api::V1::CoffeesController < Api::V1::ApiController
     end
   end
 
+  # swagger
+  swagger_api :update do
+    summary "Updates an existing coffee"
+    param :path, :id, :integer, :required, "Coffee Id"
+    param :form, :blend_name, :string, :required, "Blend Name"
+    param :form, :origin, :string, :required, "Origin"
+    param :form, :notes, :string, :required, "Blend aroma notes"
+    response :unauthorized
+    response :not_found
+    response :not_acceptable
+  end
+
   def destroy
     @coffee = Coffee.find(params[:id])
     if @coffee.destroy!
@@ -66,6 +102,14 @@ class Api::V1::CoffeesController < Api::V1::ApiController
         message: "You have successfully deleted the coffee with id #{@coffee.id}"
       }
     end
+  end
+
+  # swagger
+  swagger_api :destroy do
+    summary "Deletes an existing Coffee"
+    param :path, :id, :integer, :optional, "Coffee Id"
+    response :unauthorized
+    response :not_found
   end
 
   private def coffee_params
