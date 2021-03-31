@@ -6,10 +6,9 @@ describe 'post a coffee route', :type => :request do
 
   context 'when successful' do
     before do
-      post '/api/v1/coffees',
+      post api_v1_coffees_path,
         params: { blend_name: 'Test Blend', origin: 'Test Origin', notes: 'Mmm, mmm, good'},
         headers: { "X-Api-Key" => user.api_key }
-
       @response = JSON.parse(response.body)["coffee"]
     end
 
@@ -32,9 +31,11 @@ describe 'post a coffee route', :type => :request do
 
   context 'when not successful' do
     before do
-      post '/api/v1/coffees', params: { blend_name: '', origin: 'Test Origin', notes: 'Mmm, mmm, good'}, headers: { "X-Api-Key" => user.api_key }
+      post api_v1_coffees_path,
+        params: { blend_name: '', origin: 'Test Origin', notes: 'Mmm, mmm, good'},
+        headers: { "X-Api-Key" => user.api_key }
     end
-    it 'returns an unproccesable entity status' do
+    it 'returns an unprocessable entity status' do
       expect(response).to have_http_status(422)
     end
   end

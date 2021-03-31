@@ -1,8 +1,17 @@
-class Api::V1::CoffeesController < Api::ApiController
+class Api::V1::CoffeesController < Api::V1::ApiController
+
+  swagger_controller :coffees, "Coffee Management"
 
   def index
     @coffees = Coffee.all
     json_response(@coffees)
+  end
+
+  swagger_api :index do
+    summary "To see a list of all coffees"
+    notes "No params to input to see a list of all coffees"
+    response :success
+    response :not_found
   end
 
   def search
@@ -14,6 +23,14 @@ class Api::V1::CoffeesController < Api::ApiController
         message: "Nope no results lol"
       }
     end
+  end
+
+  swagger_api :search do
+    summary "To search for a specific blend by its name"
+    notes "params are blend_name"
+    param :query, "q", :string, :required, "Blend of coffee"
+    response :success
+    response :not_found
   end
 
   def show
@@ -51,8 +68,7 @@ class Api::V1::CoffeesController < Api::ApiController
     end
   end
 
-  private
-    def coffee_params
-      params.permit(:blend_name, :origin, :notes)
-    end
+  private def coffee_params
+    params.permit(:blend_name, :origin, :notes)
+  end
 end

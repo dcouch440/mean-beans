@@ -7,7 +7,7 @@ describe "the coffees get requests" do
 
   describe 'GET /api/v1/coffees', :type => :request do
     context 'when successful' do
-      before { get "/api/v1/coffees", headers: { "X-Api-Key" => user.api_key } }
+      before { get api_v1_coffees_path, headers: { "X-Api-Key" => user.api_key } }
 
       it { expect(response).to have_http_status(200) }
 
@@ -19,7 +19,7 @@ describe "the coffees get requests" do
 
   describe 'GET /api/v1/coffees/:id', :type => :request do
     context 'when successful' do
-      before { get "/api/v1/coffees/#{coffees.first.id}", headers: { "X-Api-Key" => user.api_key } }
+      before { get api_v1_coffee_path(coffees.first.id), headers: { "X-Api-Key" => user.api_key } }
 
       it { expect(response).to have_http_status(200) }
 
@@ -29,7 +29,7 @@ describe "the coffees get requests" do
     end
 
     context 'when not successful' do
-      before { get "/api/v1/coffees/#{ coffees.last.id + 1 }", headers: { "X-Api-Key" => user.api_key } }
+      before { get api_v1_coffee_path(coffees.last.id + 1), headers: { "X-Api-Key" => user.api_key } }
       it { expect(response).to have_http_status(404) }
     end
   end

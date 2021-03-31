@@ -7,7 +7,7 @@ class Seed
   end
 
   def generate_coffees
-    FactoryBot.create_list(:coffee, 20)
+    FactoryBot.create_list(:coffee, 50)
     puts "Created #{Coffee.count} coffees."
   end
 end
