@@ -4,7 +4,7 @@ class Seed
     Coffee.destroy_all
     seed = Seed.new
     seed.generate_coffees
-    Seed.generate_user
+    self.generate_user
   end
 
   def generate_coffees

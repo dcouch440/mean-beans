@@ -21,7 +21,11 @@ The objective of this lesson is to create a Rails API using RESTful principles, 
 * Handling exceptions when an API call fails
 
 ## Mean Beans API Endpoint
-* http://localhost:3000/api/v1, API KEY required
+* http://localhost:3000/api/v1
+* **API KEY required** (see user creation instructions below)
+* Example using the <a href="https://www.postman.com/">Postman</a> app:  
+  <img src="./public/getrequest.PNG">
+* Using `Postman`, you can make the following requests below
   * GET /api/v1/coffees
     * Returns a full list of all coffees in the database
   * POST /api/v1/coffees
@@ -64,15 +68,6 @@ The objective of this lesson is to create a Rails API using RESTful principles, 
  </tr>
 </table>
 
-## How To Make an API Call
-1. clone project
-2. do all the rake commands
-3. create a user or something
-4. open rails console and see user api key that was generated on creation
-5. open some sort of API call application thing (recommend Postman)
-6. start you server with "Rails S"
-7. key -> Uga5LEd39Slog8OGBOhrbAtt
-
 * * *
 ## Software Requirements
 * **Ruby is required to run this application**
@@ -95,7 +90,7 @@ $ code .
 ```
 * Note: VSCode is a code editing software. If you don't already have it, you can download it <a href="https://code.visualstudio.com/">here</a>
 
-4. While located in the root directy, install gem bundler by typing:
+4. While located in the root directory, install gem bundler by typing:
 
 ``` bash
 $ gem install bundler
