@@ -17,7 +17,7 @@
               "required": true
             }
           ],
-          "summary": "To see a list of all coffees",
+          "summary": "See a list of all coffees",
           "notes": "No params to input to see a list of all coffees",
           "responseMessages": [
             {
@@ -113,7 +113,7 @@
               "required": false
             }
           ],
-          "summary": "To show the product",
+          "summary": "Show a single coffee",
           "notes": "shows a specific product",
           "responseMessages": [
             {
@@ -221,7 +221,7 @@
               "required": false
             }
           ],
-          "summary": "Deletes an existing Coffee item",
+          "summary": "Deletes an existing Coffee",
           "responseMessages": [
             {
               "code": 401,
@@ -259,7 +259,7 @@
               "required": true
             }
           ],
-          "summary": "To search for a specific blend by its name",
+          "summary": "Search for a specific blend by its name",
           "notes": "params are blend_name",
           "responseMessages": [
             {
